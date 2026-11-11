@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOCLAB | Gestão de documentos e processos para pequenas empresas em Guarulhos</title>
+  <meta name="description" content="A DOCLAB atende pequenas empresas em Guarulhos com organização de documentos e processos. Analisamos o caso de cada empresa e propomos uma solução sob medida.">
+  <meta name="robots" content="index, follow">
+  <style>
+    :root {
+      --ink: #1d2b30;
+      --muted: #5a6b71;
+      --line: #d7e2e5;
+      --bg: #ffffff;
+      --soft: #f3f7f8;
+      --brand: #1f4e5a;
+      --brand-2: #2e7d8c;
+      --accent: #e8a33d;
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    a { color: var(--brand); }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+    section { padding: 72px 0; }
+    section.alt { background: var(--soft); }
+    h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.15; letter-spacing: -0.02em; }
+    h2 { font-size: clamp(24px, 3.5vw, 34px); line-height: 1.2; margin-bottom: 14px; }
+    h3 { font-size: 19px; margin-bottom: 8px; }
+    p.lead { font-size: 18px; color: var(--muted); max-width: 680px; }
+    .eyebrow {
+      display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--brand-2); margin-bottom: 12px;
+    }
+
+    /* Cabeçalho */
+    header {
+      position: sticky; top: 0; z-index: 10; background: #fff;
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { font-weight: 800; font-size: 20px; color: var(--brand); text-decoration: none; letter-spacing: .02em; }
+    .nav ul { list-style: none; display: flex; gap: 22px; }
+    .nav ul a { text-decoration: none; color: var(--ink); font-size: 15px; }
+    .nav ul a:hover { color: var(--brand); }
+
+    /* Botões */
+    .btn {
+      display: inline-block; padding: 14px 24px; border-radius: 999px;
+      font-weight: 700; text-decoration: none; font-size: 16px; border: 2px solid transparent;
+    }
+    .btn-primary { background: var(--brand); color: #fff; }
+    .btn-primary:hover { background: var(--brand-2); }
+    .btn-ghost { border-color: var(--brand); color: var(--brand); background: transparent; }
+    .btn-ghost:hover { background: var(--soft); }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+    /* Hero */
+    .hero { padding: 96px 0 80px; background: linear-gradient(180deg, #ffffff 0%, var(--soft) 100%); }
+    .hero .lead { margin-top: 18px; }
+    .tag {
+      display: inline-block; margin-top: 26px; padding: 8px 14px; border-radius: 999px;
+      background: #fff; border: 1px solid var(--line); font-size: 14px; color: var(--muted);
+    }
+
+    /* Cards */
+    .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 32px; }
+    .card {
+      background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 26px;
+    }
+    .card .num {
+      display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px;
+      border-radius: 50%; background: var(--brand); color: #fff; font-weight: 700; margin-bottom: 14px;
+    }
+    .card p { color: var(--muted); font-size: 15px; }
+
+    /* Oferta */
+    .offer {
+      background: var(--brand); color: #fff; border-radius: 20px; padding: 44px 36px;
+      display: grid; gap: 24px; grid-template-columns: 1fr; align-items: center;
+    }
+    @media (min-width: 760px) { .offer { grid-template-columns: 1.3fr 1fr; } }
+    .offer p { opacity: .92; }
+    .price { font-size: 15px; opacity: .9; }
+    .badge {
+      display: inline-block; background: var(--accent); color: #1d2b30; font-weight: 800;
+      padding: 10px 16px; border-radius: 10px; font-size: 18px; margin-top: 8px;
+    }
+    .offer .btn-primary { background: #fff; color: var(--brand); }
+    .offer .btn-primary:hover { background: #e9f1f3; }
+    .small { font-size: 13px; color: var(--muted); margin-top: 12px; }
+    .offer .small { color: rgba(255,255,255,.8); }
+
+    /* Passos */
+    .steps { counter-reset: step; list-style: none; margin-top: 28px; display: grid; gap: 16px; }
+    .steps li {
+      background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px 20px 70px;
+      position: relative; color: var(--muted);
+    }
+    .steps li::before {
+      counter-increment: step; content: counter(step);
+      position: absolute; left: 22px; top: 18px; width: 32px; height: 32px; border-radius: 50%;
+      background: var(--brand-2); color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center;
+    }
+    .steps strong { color: var(--ink); display: block; margin-bottom: 4px; }
+
+    /* Soft skills */
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .chip {
+      background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 10px 16px; font-size: 15px;
+    }
+
+    /* Busca de clientes */
+    .callout {
+      border-left: 4px solid var(--accent); background: #fff; padding: 22px 24px; border-radius: 10px;
+      margin-top: 24px; color: var(--muted);
+    }
+
+    /* Contato */
+    .contact-box {
+      background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 40px 32px; text-align: center;
+    }
+    .contact-box p { color: var(--muted); max-width: 560px; margin: 12px auto 0; }
+    .contact-info { margin-top: 22px; font-size: 16px; }
+    .contact-info a { font-weight: 600; }
+
+    /* LGPD */
+    .lgpd p { color: var(--muted); margin-top: 12px; max-width: 760px; }
+    .lgpd ul { margin: 14px 0 0 22px; color: var(--muted); }
+    .lgpd li { margin-bottom: 8px; }
+
+    /* Rodapé */
+    footer { border-top: 1px solid var(--line); padding: 36px 0; font-size: 14px; color: var(--muted); }
+    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; }
+
+    /* Botão flutuante do WhatsApp */
+    .whats-float {
+      position: fixed; right: 18px; bottom: 18px; z-index: 20;
+      background: #25d366; color: #fff; text-decoration: none; font-weight: 700;
+      padding: 14px 18px; border-radius: 999px; box-shadow: 0 6px 18px rgba(0,0,0,.18);
+    }
+
+    @media (max-width: 720px) {
+      .nav ul { display: none; }
+      section { padding: 56px 0; }
+      .offer { padding: 32px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <header>
+    <div class="wrap nav">
+      <a href="#inicio" class="logo">DOCLAB</a>
+      <nav>
+        <ul>
+          <li><a href="#valor">Quem atendemos</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#oferta">Oferta</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="inicio">
+    <div class="wrap">
+      <span class="eyebrow">Para pequenas empresas em Guarulhos</span>
+      <h1>Sua documentação organizada.<br>Sua equipe trabalhando com segurança.</h1>
+      <p class="lead">
+        A DOCLAB analisa a rotina da sua empresa e propõe uma solução de organização de documentos e processos
+        feita para o seu caso, não um modelo genérico.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#contato">Falar pelo WhatsApp</a>
+        <a class="btn btn-ghost" href="#oferta">Ver oferta de lançamento</a>
+      </div>
+      <span class="tag">Conversa inicial gratuita e sem compromisso</span>
+    </div>
+  </section>
+
+  <!-- Valor -->
+  <section id="valor">
+    <div class="wrap">
+      <span class="eyebrow">Quem atendemos</span>
+      <h2>Feito para quem está crescendo e ainda não tem tempo para tudo</h2>
+      <p class="lead">
+        Atendemos pequenas empresas que lidam com muitos documentos, prazos e pessoas, mas não têm uma área
+        dedicada a organizar essa rotina. Nosso foco é deixar o dia a dia mais simples e com menos retrabalho.
+      </p>
+      <div class="grid">
+        <div class="card">
+          <div class="num">1</div>
+          <h3>Documentos fora do lugar</h3>
+          <p>Arquivos espalhados entre e-mail, WhatsApp e computadores, sem um padrão para encontrar.</p>
+        </div>
+        <div class="card">
+          <div class="num">2</div>
+          <h3>Prazos que se perdem</h3>
+          <p>Obrigações e vencimentos controlados de cabeça ou em planilhas que ninguém mais entende.</p>
+        </div>
+        <div class="card">
+          <div class="num">3</div>
+          <h3>Rotina dependente de uma pessoa</h3>
+          <p>Quando quem sabe o processo sai de férias, a operação para. Queremos que o processo fique registrado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Serviços -->
+  <section class="alt" id="servicos">
+    <div class="wrap">
+      <span class="eyebrow">Como trabalhamos</span>
+      <h2>Analisamos o caso de cada empresa e propomos uma solução única</h2>
+      <p class="lead">
+        Não aplicamos uma fórmula pronta. Começamos entendendo como a sua empresa funciona e, a partir disso,
+        desenhamos a organização que faz sentido para a sua marca e para a sua equipe.
+      </p>
+      <ol class="steps">
+        <li><strong>Conversa de diagnóstico</strong>Entendemos sua rotina, seus documentos e onde estão as dificuldades.</li>
+        <li><strong>Análise do seu caso</strong>Mapeamos o fluxo atual e identificamos o que gera retrabalho ou risco.</li>
+        <li><strong>Proposta sob medida</strong>Apresentamos a solução para a sua empresa, com escopo, prazo e investimento claros.</li>
+        <li><strong>Implantação acompanhada</strong>Organizamos os documentos, criamos os controles e treinamos a equipe para usar.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Soft skills -->
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">Como é trabalhar com a gente</span>
+      <h2>Clareza, escuta e compromisso com o resultado</h2>
+      <p class="lead">Nosso trabalho depende da confiança que criamos com cada cliente.</p>
+      <div class="chips">
+        <span class="chip">Escuta atenta</span>
+        <span class="chip">Comunicação clara</span>
+        <span class="chip">Discrição com as informações</span>
+        <span class="chip">Pontualidade nos combinados</span>
+        <span class="chip">Linguagem simples, sem jargão</span>
+        <span class="chip">Foco em resolver, não em vender</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Oferta -->
+  <section class="alt" id="oferta">
+    <div class="wrap">
+      <div class="offer">
+        <div>
+          <span class="eyebrow" style="color:#f6d69a">Oferta de lançamento</span>
+          <h2 style="color:#fff">50% de desconto no seu primeiro trabalho</h2>
+          <p>
+            Para os primeiros clientes da DOCLAB, oferecemos 50% de desconto no primeiro trabalho contratado.
+            Você conhece o nosso jeito de trabalhar com um investimento reduzido.
+          </p>
+          <p class="small">Oferta válida por 24 horas a partir da primeira conversa, para novos clientes.</p>
+        </div>
+        <div>
+          <p class="price">Condição especial</p>
+          <div class="badge">50% de desconto no primeiro trabalho</div>
+          <p class="small">O valor é definido após a análise do seu caso. Sem compromisso.</p>
+          <div class="actions" style="margin-top:20px">
+            <a class="btn btn-primary" href="#contato">Quero minha análise</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Busca de clientes -->
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">Sobre a DOCLAB</span>
+      <h2>Empresa nova, com foco em fazer bem feito</h2>
+      <p class="lead">
+        A DOCLAB está começando e estamos em busca de clientes. Por isso, estamos dispostos a conhecer
+        cada empresa com atenção e a construir uma parceria a partir do primeiro trabalho.
+      </p>
+      <div class="callout">
+        Se a sua empresa tem uma rotina que pede mais organização e você quer alguém que ouça antes de propor,
+        vamos conversar.
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section class="alt" id="contato">
+    <div class="wrap">
+      <div class="contact-box">
+        <span class="eyebrow">Contato</span>
+        <h2>Vamos conversar sobre a sua empresa</h2>
+        <p>Fale direto pelo WhatsApp. Respondemos com calma e sem compromisso.</p>
+        <div class="actions" style="justify-content:center">
+          <a class="btn btn-primary" href="https://wa.me/5511940289250" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        </div>
+        <p class="contact-info">
+          E-mail: <a href="mailto:gbetojo@gmail.com">gbetojo@gmail.com</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LGPD e privacidade -->
+  <section class="lgpd" id="privacidade">
+    <div class="wrap">
+      <span class="eyebrow">Privacidade e proteção de dados</span>
+      <h2>Nosso compromisso com a LGPD</h2>
+      <p>
+        A DOCLAB tem compromisso com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018) e com a proteção
+        das informações de quem confia no nosso trabalho. Este site não possui formulário de coleta de dados:
+        o contato é feito diretamente pelo WhatsApp ou e-mail.
+      </p>
+      <ul>
+        <li>Coletamos apenas as informações necessárias para a conversa inicial e para a proposta, como nome, empresa e forma de contato.</li>
+        <li>Não solicitamos dados pessoais sensíveis nem dados de clientes da sua empresa sem necessidade e sem contrato.</li>
+        <li>As informações são usadas somente para o atendimento e não são compartilhadas com terceiros para fins comerciais.</li>
+        <li>Você pode pedir a qualquer momento a correção, a exclusão ou o esclarecimento sobre os seus dados pelo e-mail de contato.</li>
+        <li>Quando houver contrato de serviço, definiremos por escrito o tratamento dos documentos e as medidas de segurança adotadas.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer>
+    <div class="wrap">
+      <span>DOCLAB · Guarulhos, SP</span>
+      <span>Empresa em fase de regularização.</span>
+      <span>© 2026 DOCLAB. Todos os direitos reservados.</span>
+    </div>
+  </footer>
+
+  <a class="whats-float" href="https://wa.me/5511940289250" target="_blank" rel="noopener">WhatsApp</a>
+
+</body>
+</html>
